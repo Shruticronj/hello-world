@@ -1,5 +1,6 @@
 # hello-world
 just another repository
 hello
-how are you
-qwerty
+
+Hi this sub-branch 2. 
+
