@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+	<HTML>
+		<HEAD>
+				 <style>
+						#t1{
+							border:2px solid blue;
+							display: inline-block
+						}
+						#t2,t2.th,t2.td{
+							border:2px solid red;
+							/*border-collapse: collapse;*/
+							display: inline-block;
+							margin-left: 100px
+					}
+					</style> 
+		</HEAD>
+			<BODY>
+				<input id="S1" type="text" onkeyup="searchItem()" placeholder="Search.." 
+					style="overflow:hidden; background-color:#e9e9e9;font-size:17px; margin:14px 16px" />
+				 <button onclick="searchItem()" >Search</button><br>
+				<div style="margin-top: 20px">
+					Item Name:<input type="textbox" name="item_name" id="i1">
+					Price:<input type="number" name="price" id="i2"><br>
+				</div>
+				<button onclick="inserData()" style="margin:25px 180px" >Submit</button>		
+				<div>
+					
+					<table id="t1">
+						<caption><b><u>Original Table</u></b></caption>
+							<tr>
+								<th><u> Item </u></th>
+								<th><u> Price </u></th>
+							</tr>
+							<tbody id="tb1">
+						
+							</tbody>
+						</table>
+						<table id="t2">
+							<caption><b><u>Output</u></b></caption>
+							<tr>
+								<th><u> Item </u></th>
+								<th><u> Price </u></th>
+							</tr>
+							<tbody id="tb2">
+						
+							</tbody>
+						</table>
+				</div> 
+				<script>
+				
+					var arr=[];
+					function inserData(){
+					var name=document.getElementById("i1").value;
+					var amt=document.getElementById("i2").value;
+					var obj={'name':name,'price':amt};
+					arr.push(obj);
+					let l = '' ;
+					arr.forEach((item) => {
+						 l = `<tr>
+									<td><i>${item.name}</i></td>
+									<td><i>${item.price}</i></td> 
+								</tr>`
+						
+					})
+					var e = document.getElementById("t1");
+					e.innerHTML+=l;
+					document.getElementById("i1").value=" ";
+					document.getElementById("i2").value=null;
+				}
+				function searchItem() {
+					var input=document.getElementById("S1").value;
+					let li = '';
+					var elmtTable = document.getElementById('t2')
+					var tableRows = elmtTable.getElementsByTagName('table')
+					var rowCount = tableRows.length;
+					
+					for (var x=rowCount-1; x>0; x--) {
+   					elmtTable.removeChild(tableRows[x]);
+   					}
+					//var i=document.getElementById("t2").document.getElementById("tb2");
+					//i.innerHTML=" ";
+					arr.forEach((item) => {
+						if(input){
+							if(item.name.includes(input)){
+							li +=  `<tr>
+									<td><i>${item.name}</i></td>
+									<td><i>${item.price}</i></td> 
+								</tr>`;
+					
+							}	
+						}
+
+						
+					})
+					tableRows1 = document.getElementById('tb2');
+						tableRows1.innerHTML = li;
+
+						
+				}
+				
+				
+			</script>	
+			</BODY>
+	</HTML>
